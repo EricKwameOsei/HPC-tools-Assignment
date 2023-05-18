@@ -1,0 +1,87 @@
+Task 2
+
+The object of task2 is to benckmark my dgesv implementation and also employ auto-vectorization to help the compiler optimise my routine.Both gcc 
+and icc compilers were used. The elapse time for the dgesv routine was determined based on the following squared matrix:
+Small 1024 x 1024
+Medium 2048 x 2048
+Large 4096 x 4096
+
+
+Opt. 00
+Options: -O0-GCC
+Exec time (small): 11.68
+Exec time (medium): 142.51
+Exec time (large): 1545.78
+
+Options: -O0-ICC
+Exec time (small): 
+Exec time (medium): 
+Exec time (large): 
+
+
+Opt. Level 1 
+Options: -O1-GCC
+Exec time (small):  4.04
+Exec time (medium): 57.34
+Exec time (large): 607.74
+
+
+Options: -O1-ICC
+Exec time (small): 4.22
+Exec time (medium): 47.03
+Exec time (large): 832.06
+
+
+Opt. Level 2 
+Options: -O2-GCC
+Exec time (small): 4.46
+Exec time (medium): 46.50
+Exec time (large): 613.01
+
+
+
+Options: -O2-ICC
+Exec time (small): 3.67
+Exec time (medium): 39.01
+Exec time (large): 560.91
+
+
+Opt. Level 3 
+Options: -O3-GCC
+Exec time (small): 3.63
+Exec time (medium): 39.38
+Exec time (large): 553.08
+
+
+Options: -O3-ICC
+Exec time (small): 3.48
+Exec time (medium): 39.95
+Exec time (large): 566.40
+
+
+Opt. Level Ofast
+Options: -Ofast-GCC
+Exec time (small): 3.74
+Exec time (medium): 39.27
+Exec time (large): 572.78
+
+
+Options: -Ofast-ICC
+Exec time (small): 3.42
+Exec time (medium): 38.49
+Exec time (large): 569.76
+
+All computation was done on the finisTerrae III supercomputer using the interactive node of 32 cores. The execution of the program was run 3 times and median
+chosen as the elapsed time. Since I was previewed to both task1 and task2, matrix of row and column was employed to accommodate the size of the given matrix in 
+the implementation of my_dgesv function. As a result, two pointers were used to dynamically allocate the two matrices. For the multiplication of the matrices,
+all row elements is multiplied with all column elements. This is repeated for all row elements.
+As required, the application was compiled and executed using auto-vectorization of the above optimization levels except level O0 for Intel ICC compiler.
+It gives segmentation fault (core dumped).
+Notwithstanding, in all the ICC compiler outperformed the GNC GCC compiler in terms of execution time. One significant thing observed is that the default level (O0)
+of gcc produces larger execution time for the large matrix (4096x4096). Also, the performance of both compilers is comparable as the difference is not that much.
+Moreover, at the default (O2) of the icc , the performance was quite impressive as there was not much difference compared to the level above it. The level 3 and Ofast.
+In all the levels and its matrix size, the level 3 had the least execution time for both compiler executing the large matrix.
+
+
+
+

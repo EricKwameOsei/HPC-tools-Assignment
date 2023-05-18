@@ -1,17 +1,37 @@
 1. What is the purpose of this code? What does the code compute to get it?
 
-   [...]
+
+The main purpose of the code is to compute the solution to a system of linear equation problem using dgesv function. 
+However, the code basically computes to find the vector x in the equation Ax=b,A is an N x N matrix, x is an unknown N vector, and b is a known N vector
+
+
 
 2. Briefly describe alternative mathematical methods to perform the same operation.
 
-   [...]
+i.	Gauss-Elimination method. In this method the equations of the system are solved by eliminating the unknowns successively. This is achieved by reducing the system to an upper triangular matrix from the unknowns are derived by the use of backward substitution method. Also pivoting, partial or complete can be used in Gauss Elimination method.
+
+ii.	Cramer’s rule: This method basically expresses the system solution in terms of the determinants of the coefficient matrix and of matrices obtained from it by replacing one column by the column vector of the right-hand-sides of the equations
+
+iii.	Gauss-Jordan- This is another method of finding the solution of systems of linear equations and to find the inverse of an invertible matrix. Solution is achieved by swapping the positions of two of the rows and then multiply one of the rows by a nonzero scalar. Finally, add or subtract the scalar multiple of one row to another row  
+
+iv.	LU Decomposition. This method is suitable where the problem at hand can be model into matrix form which makes it easier in finding the solution. However, a square matrix B can be decomposed into two square matrices L and U such that B = L U where U is an upper triangular matrix formed as a result of applying the Gauss Elimination Method on B, and L is a lower triangular matrix with diagonal elements being equal to 1.
+   
 
 3. What alternative(s) do you think is more demanding, from a computational point of view and in terms of memory consumption?
 
-   [...]
+
+Theoretically and in real life scenario, cramer’s rule is the method that is computational expensive and memory hungry
+
 
 4. What do you think can be the best candidate(s) for a parallel implementation?
 
-   [...]
+   
+The best method that can be used for parallel is Gauss-Elimination method. It is worth noting that this method of solving 
+linear system equations is row-oriented.And also Row-oriented algorithm does search in parallel but requires all-reduce step.
+Therefore Gauss-Elimination is the best candidate for a parallel implementation. It involves manipulating a matrix so that all entries below the main diagonal are zero
+
 
 5. Choose one of the described methods to code your own sequential implementation in C, using the provided code skeleton.
+
+Gauss-Elimination method    
+
